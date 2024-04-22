@@ -174,7 +174,7 @@ int main(void) { // main
             levelOne(&cpuLeft, &cpuUp, &cpuDown, &cpuRight);
             }
             if(LEVEL == 2){
-                //ADD IT
+                levelTwo(&cpuLeft, &cpuUp, &cpuDown, &cpuRight);
             }
             graphicsUpdater(&playerSelector, &playerArrows);
             INITIAL = 0;

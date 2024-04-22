@@ -34,6 +34,11 @@
 #define A    928   // 880 Hz
 #define C    780   // 1046.5 Hz
 #define B 855
+#define C2 2389
+#define D2 2255
+#define E2 1896
+#define G2 1594
+
 
 uint8_t SELECTORUPDATE;
 uint32_t CURRARROW;
@@ -180,6 +185,35 @@ uint32_t phase = 0;
 uint32_t goAgain = 0;
 void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU){
 
+    if(switchData == LFT){ //RESETS DATA IF LEFT BUTTON PRESSED
+            ST7735_FillScreen(ST7735_BLACK);
+                        START = 0;
+                        LANG = 0;
+                        LEVEL = 1;
+                        Sound_Stop();
+                        MENU = 1;
+
+                        FMENUE =1;
+                        FMENUF =0;
+                        MMENUE =0;
+                        MMENUF=0;
+                        OMENUE=0;
+                        OMENUF=0;
+                        LMENUE=0;
+                        LMENUF=0;
+
+                        phase = 0;
+                        goAgain = 0;
+                        score = 0;
+                        leftCPU->y = 0;
+                        leftCPU->alive = 1;
+                        upCPU->y = 0;
+                        upCPU->alive = 1;
+                        downCPU->y = 0;
+                        downCPU->alive = 1;
+                        rightCPU->y = 0;
+                        rightCPU->alive = 1;
+        }
 
     if(phase == 0 && leftCPU->alive ==1){
         drawLeftCPU(leftCPU, 100);
@@ -342,7 +376,6 @@ void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
 
 
 
-
     /*
     drawLeftCPU(leftCPU);
     if(leftCPU->y > 50) drawDownCPU(downCPU);
@@ -355,22 +388,281 @@ void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
 
 
 
+uint32_t phase2 = 0;
+uint32_t repeat3 = 0;
+void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU){
 
+    if(switchData == LFT){ //RESETS DATA IF LEFT BUTTON PRESSED
+        ST7735_FillScreen(ST7735_BLACK);
+                    START = 0;
+                    LANG = 0;
+                    LEVEL = 1;
+                    Sound_Stop();
+                    MENU = 1;
+
+                    FMENUE =1;
+                    FMENUF =0;
+                    MMENUE =0;
+                    MMENUF=0;
+                    OMENUE=0;
+                    OMENUF=0;
+                    LMENUE=0;
+                    LMENUF=0;
+
+                    phase = 0;
+                    goAgain = 0;
+                    score = 0;
+                    leftCPU->y = 0;
+                    leftCPU->alive = 1;
+                    upCPU->y = 0;
+                    upCPU->alive = 1;
+                    downCPU->y = 0;
+                    downCPU->alive = 1;
+                    rightCPU->y = 0;
+                    rightCPU->alive = 1;
+    }
+
+
+
+    if (phase2 == 0 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
+        drawDownCPU(downCPU, 100);
+        if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
+        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 30); }
+    } else if(phase2 == 0 && downCPU->alive == 0 && leftCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+        leftCPU->alive = 1;
+        leftCPU->y = 0;
+    }
+    if (phase2 == 1 && (downCPU->alive == 1 || upCPU->alive == 1)) {
+            drawUpCPU(upCPU, 120);
+            if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
+    } else if (phase2 == 1 && downCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 2 && downCPU->alive == 1) {
+        drawDownCPU(downCPU, 100);
+    }
+    if (phase2 == 2 && downCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+    }
+    if (phase2 == 3 && downCPU->alive == 1) {
+        drawDownCPU(downCPU, 100);
+    }
+    if (phase2 == 3 && downCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+    }
+
+    if (phase2 == 4 && upCPU->alive == 1) {
+        drawUpCPU(upCPU, 100);
+    }
+    if (phase2 == 4 && upCPU->alive == 0) {
+        phase2++;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 5 && upCPU->alive == 1) {
+        drawUpCPU(upCPU, 100);
+    }
+    if (phase2 == 5 && upCPU->alive == 0) {
+        phase2++;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 6 && (upCPU->alive == 1 || downCPU->alive == 1 || rightCPU->alive == 1)) {
+        drawUpCPU(upCPU, 100);
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 30); }
+        if (downCPU->y > 50) { drawRightCPU(rightCPU, 30); }
+    }
+    if (phase2 == 6 && upCPU->alive == 0 && downCPU->alive == 0 && rightCPU->alive == 0 ) {
+        phase2++;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        rightCPU->alive = 1;
+        rightCPU->y = 0;
+    }
+    if (phase2 == 7 && rightCPU->alive == 1) {
+        drawRightCPU(rightCPU, 100);
+    }
+    if (phase2 == 7 && rightCPU->alive == 0) {
+        phase2++;
+        rightCPU->alive = 1;
+        rightCPU->y = 0;
+    }
+
+    if (phase2 == 8 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
+        drawDownCPU(downCPU, 100);
+        if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
+        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 30); }
+    } else if(phase2 == 8 && downCPU->alive == 0 && leftCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+        leftCPU->alive = 1;
+        leftCPU->y = 0;
+    }
+    if (phase2 == 9 && (downCPU->alive == 1 || upCPU->alive == 1)) {
+            drawUpCPU(upCPU, 120);
+            if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
+    } else if (phase2 == 9 && downCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 10 && downCPU->alive == 1) {
+        drawDownCPU(downCPU, 100);
+    }
+    if (phase2 == 10 && downCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+    }
+    if (phase2 == 11 && downCPU->alive == 1) {
+        drawDownCPU(downCPU, 100);
+    }
+    if (phase2 == 11 && downCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+    }
+
+    if (phase2 == 12 && (downCPU->alive == 1 || upCPU->alive == 1)) {
+        drawDownCPU(downCPU, 100);
+        if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
+    }
+    if (phase2 == 12 && downCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 13 && (downCPU->alive == 1 || upCPU->alive == 1)) {
+        drawUpCPU(upCPU, 100);
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 50); }
+    }
+    if (phase2 == 13 && downCPU->alive == 0 && upCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+    }
+    if (phase2 == 14 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
+        drawUpCPU(upCPU, 100);
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 50); }
+        if (downCPU->y > 50) { drawLeftCPU(leftCPU, 50); }
+    }
+    if (phase2 == 14 && downCPU->alive == 0 && upCPU->alive == 0 && leftCPU->alive == 0) {
+        phase2++;
+        downCPU->alive = 1;
+        downCPU->y = 0;
+        upCPU->alive = 1;
+        upCPU->y = 0;
+        leftCPU->alive = 1;
+        leftCPU->y = 0;
+    }
+
+    if(phase2 == 15){
+        if(LANG == 0){
+        ST7735_SetCursor(6, 1);
+        ST7735_OutString("GAME OVER");
+        ST7735_SetCursor(6, 3);
+        printf("Score: %d", score);
+        ST7735_SetCursor(3, 5);
+        ST7735_OutString("Press Any Button");
+        ST7735_SetCursor(5, 6);
+        ST7735_OutString("To Restart");
+        }
+        else if(LANG == 1){
+            ST7735_SetCursor(6, 1);
+            ST7735_OutString("JEU TERMINE");
+            ST7735_SetCursor(6, 3);
+            printf("Score: %d", score);
+            ST7735_SetCursor(4, 5);
+            ST7735_OutString("Appuyer Sur Un");
+            ST7735_SetCursor(1, 6);
+            ST7735_OutString("Bouton Recommencer");
+        }
+
+
+        if(switchData != 0){
+            ST7735_FillScreen(ST7735_BLACK);
+            START = 0;
+            LANG = 0;
+            LEVEL = 1;
+            Sound_Stop();
+            MENU = 1;
+
+            FMENUE =1;
+            FMENUF =0;
+            MMENUE =0;
+            MMENUF=0;
+            OMENUE=0;
+            OMENUF=0;
+            LMENUE=0;
+            LMENUF=0;
+
+            phase = 0;
+            goAgain = 0;
+            score = 0;
+            leftCPU->y = 0;
+            leftCPU->alive = 1;
+            upCPU->y = 0;
+            upCPU->alive = 1;
+            downCPU->y = 0;
+            downCPU->alive = 1;
+            rightCPU->y = 0;
+            rightCPU->alive = 1;
+        }
+
+    }
+}
 
 
 
 //SELECTION OF SOUND
 
 void noteSelector(){
-    if(CURRARROW == 0){
-        Sound_Start(G);
-    }else if(CURRARROW == 1){
-        Sound_Start(A);
-    }else if(CURRARROW == 2){
-        Sound_Start(C);
-    }else if(CURRARROW == 3){
-        Sound_Start(B);
+    if (LEVEL == 1) {
+        if(CURRARROW == 0){
+            Sound_Start(G);
+        }else if(CURRARROW == 1){
+            Sound_Start(A);
+        }else if(CURRARROW == 2){
+            Sound_Start(C);
+        }else if(CURRARROW == 3){
+            Sound_Start(B);
+        }
+    } else if (LEVEL == 2) {
+        if(CURRARROW == 0){
+            Sound_Start(C);
+        }else if(CURRARROW == 1){
+            Sound_Start(D);
+        }else if(CURRARROW == 2){
+            Sound_Start(E);
+        }else if(CURRARROW == 3){
+            Sound_Start(G);
+        }
     }
+
 }
 
 

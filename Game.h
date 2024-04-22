@@ -34,7 +34,7 @@ void collisionChecker(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Spr
 
 void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU);
 
-
+void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU);
 
 
 
