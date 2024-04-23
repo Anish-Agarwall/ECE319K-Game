@@ -73,6 +73,14 @@ void drawplayableArrow(Sprite_t *playableArrow){
 }
 
 
+void drawAll(Sprite_t *playableArrow){
+    ST7735_DrawBitmap(7, 145, leftPressed, 28, 28);
+    ST7735_DrawBitmap(35, 145, upPressed, 28, 28);
+    ST7735_DrawBitmap(63, 145, downPressed, 28, 28);
+    ST7735_DrawBitmap(93, 145, rightPressed, 28, 28);
+}
+
+
 void cpuGraphics(Sprite_t *leftCPUArrow){
     drawLeftCPU(leftCPUArrow, 100);
 }
@@ -166,8 +174,8 @@ void drawMenuLF(){
     ST7735_OutString("CHOISISSEZ LA LANGUE");
     ST7735_SetCursor(2, 5);
     ST7735_OutString("<< POUR L'ANGLAIS");
-    ST7735_SetCursor(1, 6);
-    ST7735_OutString(">> POUR LE FRANCAIS");//FRANÇAIS
+    ST7735_SetCursor(0, 6);
+    ST7735_OutString(">> POUR LE FRAN\x80" "AIS");//FRANÇAIS
 }
 
 void drawMainE(){
@@ -237,9 +245,9 @@ void drawLevelE(){
 void drawLevelF(){
 
     ST7735_SetCursor(1, 1);
-    ST7735_OutString("SELECTION DU NIVEAU"); //SÉLECTION DU NIVEAU
+    ST7735_OutString("S\x90LECTION DU NIVEAU"); //SÉLECTION DU NIVEAU
     ST7735_SetCursor(2, 3);
     ST7735_OutString("<< PREMIER NIVEAU");
     ST7735_SetCursor(2, 5);
-    ST7735_OutString(">> DEUXIEME NIVEAU"); //DEUXIÈME NIVEAU
+    ST7735_OutString(">> DEUXI\x90ME NIVEAU"); //DEUXIÈME NIVEAU
 }

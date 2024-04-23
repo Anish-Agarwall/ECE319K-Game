@@ -16,6 +16,11 @@ void drawSelector(Sprite_t *playerSelector);
 
 void drawplayableArrow(Sprite_t *playableArrow);
 
+//SECOND ONE
+void drawAll(Sprite_t *playableArrow);
+
+
+
 
 //CPU STUFF
 void cpuGraphics(Sprite_t *leftCPUArrow);

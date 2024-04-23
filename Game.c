@@ -175,6 +175,31 @@ void collisionChecker(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Spr
 
 
 
+    if(switchData == LFT && (leftCPU->y <= 150 && leftCPU->y >= 144)){
+        leftCPU->alive = 0;
+        //score++;
+        Clock_Delay1ms(100);
+    }
+
+    if(switchData == LFT && (upCPU->y <= 150 && upCPU->y >= 144)){
+        upCPU->alive = 0;
+        //score++;
+        Clock_Delay1ms(100);
+    }
+
+    if(switchData == LFT && (downCPU->y <= 150 && downCPU->y >= 144)){
+        downCPU->alive = 0;
+        //score++;
+        Clock_Delay1ms(100);
+    }
+
+    if(switchData == LFT && (rightCPU->y <= 150 && rightCPU->y >= 144)){
+        rightCPU->alive = 0;
+        //score++;
+        Clock_Delay1ms(100);
+    }
+
+
 }
 
 
@@ -185,6 +210,7 @@ uint32_t phase = 0;
 uint32_t goAgain = 0;
 void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU){
 
+    /*
     if(switchData == LFT){ //RESETS DATA IF LEFT BUTTON PRESSED
             ST7735_FillScreen(ST7735_BLACK);
                         START = 0;
@@ -214,6 +240,8 @@ void levelOne(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
                         rightCPU->y = 0;
                         rightCPU->alive = 1;
         }
+
+    */
 
     if(phase == 0 && leftCPU->alive ==1){
         drawLeftCPU(leftCPU, 100);
@@ -392,6 +420,7 @@ uint32_t phase2 = 0;
 uint32_t repeat3 = 0;
 void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *rightCPU){
 
+    /*
     if(switchData == LFT){ //RESETS DATA IF LEFT BUTTON PRESSED
         ST7735_FillScreen(ST7735_BLACK);
                     START = 0;
@@ -421,13 +450,13 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
                     rightCPU->y = 0;
                     rightCPU->alive = 1;
     }
-
+*/
 
 
     if (phase2 == 0 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
         drawDownCPU(downCPU, 100);
-        if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
-        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 30); }
+        if (downCPU->y > 50) { drawUpCPU(upCPU, 70); }
+        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 70); }
     } else if(phase2 == 0 && downCPU->alive == 0 && leftCPU->alive == 0 && upCPU->alive == 0) {
         phase2++;
         downCPU->alive = 1;
@@ -448,7 +477,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
         upCPU->y = 0;
     }
     if (phase2 == 2 && downCPU->alive == 1) {
-        drawDownCPU(downCPU, 100);
+        drawDownCPU(downCPU, 25);
     }
     if (phase2 == 2 && downCPU->alive == 0) {
         phase2++;
@@ -456,7 +485,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
         downCPU->y = 0;
     }
     if (phase2 == 3 && downCPU->alive == 1) {
-        drawDownCPU(downCPU, 100);
+        drawDownCPU(downCPU, 25);
     }
     if (phase2 == 3 && downCPU->alive == 0) {
         phase2++;
@@ -465,7 +494,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
 
     if (phase2 == 4 && upCPU->alive == 1) {
-        drawUpCPU(upCPU, 100);
+        drawUpCPU(upCPU, 50);
     }
     if (phase2 == 4 && upCPU->alive == 0) {
         phase2++;
@@ -473,7 +502,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
         upCPU->y = 0;
     }
     if (phase2 == 5 && upCPU->alive == 1) {
-        drawUpCPU(upCPU, 100);
+        drawUpCPU(upCPU, 25);
     }
     if (phase2 == 5 && upCPU->alive == 0) {
         phase2++;
@@ -482,8 +511,8 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
     if (phase2 == 6 && (upCPU->alive == 1 || downCPU->alive == 1 || rightCPU->alive == 1)) {
         drawUpCPU(upCPU, 100);
-        if (upCPU->y > 50) { drawDownCPU(downCPU, 30); }
-        if (downCPU->y > 50) { drawRightCPU(rightCPU, 30); }
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
+        if (downCPU->y > 50) { drawRightCPU(rightCPU, 60); }
     }
     if (phase2 == 6 && upCPU->alive == 0 && downCPU->alive == 0 && rightCPU->alive == 0 ) {
         phase2++;
@@ -505,8 +534,8 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
 
     if (phase2 == 8 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
         drawDownCPU(downCPU, 100);
-        if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
-        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 30); }
+        if (downCPU->y > 50) { drawUpCPU(upCPU, 60); }
+        if (upCPU->y > 50) { drawLeftCPU(leftCPU, 60); }
     } else if(phase2 == 8 && downCPU->alive == 0 && leftCPU->alive == 0 && upCPU->alive == 0) {
         phase2++;
         downCPU->alive = 1;
@@ -518,7 +547,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
     if (phase2 == 9 && (downCPU->alive == 1 || upCPU->alive == 1)) {
             drawUpCPU(upCPU, 120);
-            if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
+            if (upCPU->y > 50) { drawDownCPU(downCPU, 70); }
     } else if (phase2 == 9 && downCPU->alive == 0 && upCPU->alive == 0) {
         phase2++;
         downCPU->alive = 1;
@@ -527,7 +556,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
         upCPU->y = 0;
     }
     if (phase2 == 10 && downCPU->alive == 1) {
-        drawDownCPU(downCPU, 100);
+        drawDownCPU(downCPU, 30);
     }
     if (phase2 == 10 && downCPU->alive == 0) {
         phase2++;
@@ -535,7 +564,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
         downCPU->y = 0;
     }
     if (phase2 == 11 && downCPU->alive == 1) {
-        drawDownCPU(downCPU, 100);
+        drawDownCPU(downCPU, 30);
     }
     if (phase2 == 11 && downCPU->alive == 0) {
         phase2++;
@@ -544,7 +573,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
 
     if (phase2 == 12 && (downCPU->alive == 1 || upCPU->alive == 1)) {
-        drawDownCPU(downCPU, 100);
+        drawDownCPU(downCPU, 60);
         if (downCPU->y > 50) { drawUpCPU(upCPU, 50); }
     }
     if (phase2 == 12 && downCPU->alive == 0 && upCPU->alive == 0) {
@@ -556,7 +585,7 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
     if (phase2 == 13 && (downCPU->alive == 1 || upCPU->alive == 1)) {
         drawUpCPU(upCPU, 100);
-        if (upCPU->y > 50) { drawDownCPU(downCPU, 50); }
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
     }
     if (phase2 == 13 && downCPU->alive == 0 && upCPU->alive == 0) {
         phase2++;
@@ -567,8 +596,8 @@ void levelTwo(Sprite_t *leftCPU, Sprite_t *upCPU, Sprite_t *downCPU, Sprite_t *r
     }
     if (phase2 == 14 && (downCPU->alive == 1 || upCPU->alive == 1 || leftCPU->alive == 1)) {
         drawUpCPU(upCPU, 100);
-        if (upCPU->y > 50) { drawDownCPU(downCPU, 50); }
-        if (downCPU->y > 50) { drawLeftCPU(leftCPU, 50); }
+        if (upCPU->y > 50) { drawDownCPU(downCPU, 60); }
+        if (downCPU->y > 50) { drawLeftCPU(leftCPU, 60); }
     }
     if (phase2 == 14 && downCPU->alive == 0 && upCPU->alive == 0 && leftCPU->alive == 0) {
         phase2++;
